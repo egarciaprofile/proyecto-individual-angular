@@ -1,0 +1,61 @@
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+  <mat-form-field appearance="fill">
+    <mat-label>Name</mat-label>
+    <input matInput formControlName="name" placeholder="Enter your name">
+    <mat-error *ngIf="loginForm.get('name')?.touched && loginForm.get('name')?.errors?.['required']">
+      Name is required
+    </mat-error>
+    <mat-error *ngIf="loginForm.get('name')?.touched && loginForm.get('name')?.errors?.['minlength']">
+      Name must be at least 2 characters long
+    </mat-error>
+  </mat-form-field>
+
+
+  <mat-form-field appearance="fill">
+    <mat-label>Surname</mat-label>
+    <input matInput formControlName="surname" placeholder="Enter your surname">
+    <mat-error *ngIf="loginForm.get('surname')?.touched && loginForm.get('surname')?.errors?.['required']">
+      Surname is required
+    </mat-error>
+    <mat-error *ngIf="loginForm.get('surname')?.touched && loginForm.get('surname')?.errors?.['minlength']">
+      Surname must be at least 2 characters long
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Email</mat-label>
+    <input matInput formControlName="email" placeholder="Enter your email">
+    <mat-error *ngIf="loginForm.get('email')?.touched && loginForm.get('email')?.errors?.['required']">
+      Email is required
+    </mat-error>
+    <mat-error *ngIf="loginForm.get('email')?.touched && loginForm.get('email')?.errors?.['email']">
+      Enter a valid email
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Password</mat-label>
+    <input matInput type="password" formControlName="password" placeholder="Enter your password">
+    <mat-error *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.errors?.['required']">
+      Password is required
+    </mat-error>
+    <mat-error *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.errors?.['minlength']">
+      Password must be at least 6 characters
+    </mat-error>
+  </mat-form-field>
+
+
+  <mat-form-field appearance="fill">
+    <mat-label>Phone</mat-label>
+    <input matInput formControlName="phone" placeholder="Enter your phone number">
+    <mat-error *ngIf="loginForm.get('phone')?.touched && loginForm.get('phone')?.errors?.['required']">
+      Phone number is required
+    </mat-error>
+    <mat-error *ngIf="loginForm.get('phone')?.touched && loginForm.get('phone')?.errors?.['pattern']">
+      Phone number must contain only digits
+    </mat-error>
+  </mat-form-field>
+
+
+  <button mat-raised-button color="primary" type="submit" [disabled]="!loginForm.valid">Submit</button>
+</form>
