@@ -8,6 +8,7 @@ import { NgIf } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatCardModule } from '@angular/material/card';
+import { ErrorDisplayComponent } from '../../../../shared/components/error/error.component';
 
 @Component({
   selector: 'app-register-form',
@@ -17,7 +18,8 @@ import { MatCardModule } from '@angular/material/card';
     MatInputModule,
     MatButtonModule,
     NgIf,
-    MatCardModule
+    MatCardModule,
+    ErrorDisplayComponent
   ],
   templateUrl: './register-form.component.html',
   styleUrl: './register-form.component.css'
