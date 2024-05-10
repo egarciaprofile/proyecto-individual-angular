@@ -3,7 +3,7 @@ import { ReactiveFormsModule, FormGroup, FormControl, Validators, FormBuilder } 
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { UserService } from '../../../../shared/services/user.service';
-import { User } from '../../../../shared/models/user/user.model';
+import { TicketerUser } from '../../../../shared/models/user/user.model';
 import { NgIf } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -37,7 +37,7 @@ export class RegisterFormComponent {
 
   onSubmit() {
     if (this.registerForm.valid) {
-      const formData: User = {
+      const formData: TicketerUser = {
         name: this.registerForm.value.name || "",
         surname: this.registerForm.value.surname || "",
         email: this.registerForm.value.email || "",

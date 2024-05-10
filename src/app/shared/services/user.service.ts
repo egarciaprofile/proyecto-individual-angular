@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
-import { User } from '../models/user/user.model';
+import { TicketerUser } from '../models/user/user.model';
 import { Observable, catchError, of, tap, throwError } from 'rxjs';
 import { environment } from '../../../environments/environment';
 
@@ -10,8 +10,8 @@ import { environment } from '../../../environments/environment';
 export class UserService {
   constructor(private http: HttpClient) { }
 
-  addUser(user: User): Observable<User> {
-    return this.http.post<User>(environment.userUrl, user).pipe(
+  addUser(user: TicketerUser): Observable<TicketerUser> {
+    return this.http.post<TicketerUser>(environment.userUrl, user).pipe(
       catchError((error: HttpErrorResponse) => {
         console.error(`addUser failed: ${error.message}`);
         return throwError(() => error);
