@@ -2,13 +2,13 @@ import { Component } from '@angular/core';
 import { ReactiveFormsModule, FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
-import { UserService } from '../../../../shared/services/user.service';
 import { TicketerUser } from '../../../../shared/models/user/user.model';
 import { NgIf } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatCardModule } from '@angular/material/card';
 import { ErrorDisplayComponent } from '../../../../shared/components/error/error.component';
+import { UserService } from '../../../../shared/services/impl/user/user.service';
 
 @Component({
   selector: 'app-register-form',
@@ -45,7 +45,7 @@ export class RegisterFormComponent {
         phone: this.registerForm.value.phone || ""
       };
 
-      this.userService.addUser(formData).subscribe({
+      this.userService.add(formData).subscribe({
         next: (user) => {
           this.snackBar.open('User successfully registered!', 'Close', { duration: 3000 });
         },
