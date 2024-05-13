@@ -1,4 +1,4 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, Inject, OnInit} from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { TicketerEvent } from '../../../../shared/models/event/event.model';
@@ -10,6 +10,8 @@ import { MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { PerformerService } from '../../../../shared/services/impl/performer/performer.service';
 import { EventService } from '../../../../shared/services/impl/event/event.service';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { ConcertService } from '../../../../shared/services/impl/concert/concert.service';
 
 @Component({
   selector: 'app-concert-form',
@@ -24,18 +26,41 @@ export class ConcertFormComponent {
   performers$!: Observable<TicketerPerformer[]>;
 
   constructor(
+    @Inject(MAT_DIALOG_DATA) public data: any,
     private fb: FormBuilder,
+    private concertService: ConcertService,
     private eventService: EventService,
     private performerService: PerformerService
   ) {}
 
   ngOnInit(): void {
     this.form = this.fb.group({
-      event: [''],
-      performer: ['']
+      event: [this.data && this.data.event ? this.data.event.id : ''],
+      performer: [this.data && this.data.performer ? this.data.performer.id : '']
     });
 
     this.events$ = this.eventService.getAll();
     this.performers$ = this.performerService.getAll();
+  }
+
+  onSubmit(): void {
+    if (this.form.valid) {
+      const formData = {
+        id: this.data ? this.data.id : null,
+        event: this.form.value.event,
+        performer: this.form.value.performer
+      };
+
+      if (!this.data.id) {
+        this.concertService.add(formData).subscribe({
+          next: (response) => {
+            console.log('Concert added successfully', response);
+          },
+          error: (error) => {
+            console.error('Failed to add user', error);
+          }
+        });
+      }
+    }
   }
 }

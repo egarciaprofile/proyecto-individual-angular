@@ -26,6 +26,10 @@ export class GenericEndpointService<T> {
     return this.http.post<T>(this._baseUrl, entity);
   }
 
+  edit(entity: T): Observable<T> {
+    return this.http.put<T>(this._baseUrl, entity);
+  }
+
   delete(id: number): Observable<void> {
     return this.http.delete<void>(`${this._baseUrl}/${id}`);
   }
