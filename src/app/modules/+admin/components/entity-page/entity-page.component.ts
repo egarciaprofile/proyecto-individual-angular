@@ -2,13 +2,14 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { TableServiceParentComponent } from '../../../../shared/components/table-service-parent/table-service-parent.component';
 import { NgIf } from '@angular/common';
+import { ConcertFormComponent } from "../concert-form/concert-form.component";
 
 @Component({
-  selector: 'app-entity-page',
-  standalone: true,
-  imports: [TableServiceParentComponent, NgIf],
-  templateUrl: './entity-page.component.html',
-  styleUrl: './entity-page.component.css'
+    selector: 'app-entity-page',
+    standalone: true,
+    templateUrl: './entity-page.component.html',
+    styleUrl: './entity-page.component.css',
+    imports: [TableServiceParentComponent, NgIf, ConcertFormComponent]
 })
 export class EntityPageComponent {
   entity: string = '';

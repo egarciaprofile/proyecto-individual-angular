@@ -1,5 +1,6 @@
 import { NgFor, NgIf } from '@angular/common';
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
 
 @Component({
@@ -7,18 +8,17 @@ import { MatTableModule } from '@angular/material/table';
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.css'],
   standalone: true,
-  imports: [MatTableModule, NgFor, NgIf]
+  imports: [MatTableModule, NgFor, NgIf, MatIconModule]
 })
 export class TicketerListComponent<T extends Record<string, any>> implements OnChanges {
   @Input() data: T[] = [];
-  displayedColumns: string[] = [];
+  @Input() columns: string[] = [];
+  @Input() refreshData!: () => void;
 
   constructor() {}
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes['data'] && this.data.length > 0) {
-      this.extractColumnNames();
-    }
+
   }
 
   isObject(item: any): boolean {
@@ -27,9 +27,5 @@ export class TicketerListComponent<T extends Record<string, any>> implements OnC
 
   objectKeys(item: any): string[] {
     return Object.keys(item);
-  }
-
-  private extractColumnNames(): void {
-    this.displayedColumns = Object.keys(this.data[0]);
   }
 }

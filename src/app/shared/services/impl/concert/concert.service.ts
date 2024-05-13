@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { GenericEndpointService } from '../../generic-endpoint.service';
-import { TicketerUser } from '../../../models/user/user.model';
 import { HttpClient } from '@angular/common/http';
+import { TicketerConcert } from '../../../models/concert/concert.model';
 
 @Injectable({
   providedIn: 'root'
 })
-export class UserService extends GenericEndpointService<TicketerUser> {
+export class ConcertService extends GenericEndpointService<TicketerConcert> {
   constructor(http: HttpClient) {
     super(http);
-    this.setBaseUrl('user');
+    this.setBaseUrl('concert');
   }
 }

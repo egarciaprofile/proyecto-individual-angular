@@ -13,6 +13,7 @@ import { GenericEndpointService } from '../../services/generic-endpoint.service'
 export class TableServiceParentComponent<T extends Record<string, any>> implements OnInit {
   @Input() baseUrl!: string;
   entities: T[] = [];
+  displayedColumns: string[] = [];
 
   constructor(private genericService: GenericEndpointService<T>) { }
 
@@ -26,9 +27,13 @@ export class TableServiceParentComponent<T extends Record<string, any>> implemen
   loadEntities(): void {
     this.genericService.getAll().subscribe({
       next: (data) => {
-        console.log("Received data:", data);
         this.entities = data;
-        console.log("Assigned entities:", this.entities);
+        if (data.length > 0) {
+          this.displayedColumns = Object.keys(data[0]);
+          this.displayedColumns.push('actions');
+        }
+        console.log("Received data:", data);
+        console.log("Columns:", this.displayedColumns);
       },
       error: (err) => console.error(`Failed to load data from ${this.genericService}`, err)
     });
