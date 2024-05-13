@@ -14,6 +14,7 @@ export class TicketerListComponent<T extends Record<string, any>> implements OnC
   @Input() data: T[] = [];
   @Input() columns: string[] = [];
   @Input() refreshData!: () => void;
+  @Input() deleteEntity!: (id: number) => void;
 
   constructor() {}
 
