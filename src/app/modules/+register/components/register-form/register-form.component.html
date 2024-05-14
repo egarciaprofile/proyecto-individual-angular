@@ -1,0 +1,40 @@
+<mat-card>
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="form-container">
+    <mat-form-field appearance="fill">
+      <mat-label>Name</mat-label>
+      <input matInput formControlName="name" placeholder="Enter your name">
+      <app-error-display [control]="registerForm.get('name')" errorCode="required" text="Name is required"></app-error-display>
+      <app-error-display [control]="registerForm.get('name')" errorCode="minlength" text="Name must be at least 2 characters long"></app-error-display>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Surname</mat-label>
+      <input matInput formControlName="surname" placeholder="Enter your surname">
+      <app-error-display [control]="registerForm.get('surname')" errorCode="required" text="Surname is required"></app-error-display>
+      <app-error-display [control]="registerForm.get('surname')" errorCode="minlength" text="Surname must be at least 2 characters long"></app-error-display>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email" placeholder="Enter your email">
+      <app-error-display [control]="registerForm.get('email')" errorCode="required" text="Email is required"></app-error-display>
+      <app-error-display [control]="registerForm.get('email')" errorCode="email" text="Enter a valid email"></app-error-display>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Password</mat-label>
+      <input matInput type="password" formControlName="password" placeholder="Enter your password">
+      <app-error-display [control]="registerForm.get('password')" errorCode="required" text="Password is required"></app-error-display>
+      <app-error-display [control]="registerForm.get('password')" errorCode="minlength" text="Password must be at least 6 characters"></app-error-display>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Phone</mat-label>
+      <input matInput formControlName="phone" placeholder="Enter your phone number">
+      <app-error-display [control]="registerForm.get('phone')" errorCode="required" text="Phone number is required"></app-error-display>
+      <app-error-display [control]="registerForm.get('phone')" errorCode="pattern" text="Phone number must contain only digits"></app-error-display>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" type="submit" [disabled]="!registerForm.valid">Submit</button>
+  </form>
+</mat-card>

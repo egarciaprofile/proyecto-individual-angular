@@ -1,0 +1,18 @@
+<table mat-table [dataSource]="data" class="mat-elevation-z8">
+  <ng-container *ngFor="let column of displayedColumns" [matColumnDef]="column">
+    <th mat-header-cell *matHeaderCellDef> {{ column }} </th>
+    <td mat-cell *matCellDef="let element">
+      <ng-container *ngIf="isObject(element[column])">
+        <div *ngFor="let key of objectKeys(element[column])">
+          <strong>{{ key }}:</strong> {{ element[column][key] }}
+        </div>
+      </ng-container>
+      <ng-container *ngIf="!isObject(element[column])">
+        {{ element[column] }}
+      </ng-container>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
