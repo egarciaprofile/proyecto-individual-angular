@@ -44,7 +44,7 @@ export class UserFormComponent implements OnInit {
         phone: this.form.value.phone || ""
       };
 
-      if (!this.data.id) {
+      if (!this.data?.id) {
         this.userService.add(formData).subscribe();
       }
     }
