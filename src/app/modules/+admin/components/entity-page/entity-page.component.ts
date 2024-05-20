@@ -19,6 +19,10 @@ export class EntityPageComponent implements OnDestroy {
   constructor(private route: ActivatedRoute) {}
 
   ngOnInit(): void {
+    this.addSubscriptionRoute();
+  }
+
+  addSubscriptionRoute(): void {
     this.subscription.add(
       this.route.paramMap.subscribe(params => {
         this.entity = params.get('entity') || '';
