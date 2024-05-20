@@ -20,7 +20,7 @@
         <ng-container *ngIf="column !== 'actions'">
           <ng-container *ngIf="isObject(element[column])">
             <div *ngFor="let key of objectKeys(element[column])">
-              <strong>{{ key }}:</strong> {{ element[column][key] }}
+              <strong>{{ key }}:</strong> {{ displayObject(element[column][key]) }}
             </div>
           </ng-container>
           <ng-container *ngIf="!isObject(element[column])">

@@ -31,4 +31,12 @@ export class TicketerListComponent<T extends Record<string, any>> implements OnC
   objectKeys(item: any): string[] {
     return Object.keys(item);
   }
+
+  displayObject(obj: any): string {
+    return this.isObject(obj)
+      ? this.objectKeys(obj)
+          .map(key => `${key}: ${this.displayObject(obj[key])}`)
+          .join(', ')
+      : obj;
+  }
 }
