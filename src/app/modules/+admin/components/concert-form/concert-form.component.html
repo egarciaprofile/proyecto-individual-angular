@@ -1,0 +1,20 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <mat-form-field appearance="fill">
+    <mat-label>Event</mat-label>
+    <mat-select formControlName="event">
+      <mat-option *ngFor="let event of events$ | async" [value]="event.id">
+        {{ event.name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Performer</mat-label>
+    <mat-select formControlName="performer">
+      <mat-option *ngFor="let performer of performers$ | async" [value]="performer.id">
+        {{ performer.name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <button mat-raised-button color="primary" type="submit">Save</button>
+</form>

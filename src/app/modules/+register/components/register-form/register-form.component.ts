@@ -7,7 +7,6 @@ import { NgIf } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatCardModule } from '@angular/material/card';
-import { ErrorDisplayComponent } from '../../../../shared/components/error/error.component';
 import { UserService } from '../../../../shared/services/impl/user/user.service';
 
 @Component({
@@ -18,8 +17,7 @@ import { UserService } from '../../../../shared/services/impl/user/user.service'
     MatInputModule,
     MatButtonModule,
     NgIf,
-    MatCardModule,
-    ErrorDisplayComponent
+    MatCardModule
   ],
   templateUrl: './register-form.component.html',
   styleUrl: './register-form.component.css'
@@ -50,7 +48,6 @@ export class RegisterFormComponent {
           this.snackBar.open('User successfully registered!', 'Close', { duration: 3000 });
         },
         error: (error: HttpErrorResponse) => {
-          console.error('Registration failed:', error);
           switch (error.status) {
             case 409:
               this.snackBar.open(`This mail is already registered!`, 'Close', { duration: 3000 });

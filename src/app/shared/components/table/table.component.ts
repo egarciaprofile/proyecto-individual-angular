@@ -1,5 +1,7 @@
 import { NgFor, NgIf } from '@angular/common';
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
 
 @Component({
@@ -7,18 +9,19 @@ import { MatTableModule } from '@angular/material/table';
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.css'],
   standalone: true,
-  imports: [MatTableModule, NgFor, NgIf]
+  imports: [MatTableModule, NgFor, NgIf, MatIconModule, MatButtonModule]
 })
 export class TicketerListComponent<T extends Record<string, any>> implements OnChanges {
   @Input() data: T[] = [];
-  displayedColumns: string[] = [];
+  @Input() columns: string[] = [];
+  @Input() refreshData!: () => void;
+  @Input() deleteEntity!: (id: number) => void;
+  @Input() editEntity!: (id: number) => void;
 
   constructor() {}
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes['data'] && this.data.length > 0) {
-      this.extractColumnNames();
-    }
+
   }
 
   isObject(item: any): boolean {
@@ -29,7 +32,11 @@ export class TicketerListComponent<T extends Record<string, any>> implements OnC
     return Object.keys(item);
   }
 
-  private extractColumnNames(): void {
-    this.displayedColumns = Object.keys(this.data[0]);
+  displayObject(obj: any): string {
+    return this.isObject(obj)
+      ? this.objectKeys(obj)
+          .map(key => `${key}: ${this.displayObject(obj[key])}`)
+          .join(', ')
+      : obj;
   }
 }
