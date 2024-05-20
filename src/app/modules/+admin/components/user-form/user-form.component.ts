@@ -46,8 +46,6 @@ export class UserFormComponent implements OnInit {
 
       if (!this.data.id) {
         this.userService.add(formData).subscribe();
-      } else {
-
       }
     }
   }

@@ -63,15 +63,14 @@ export class TableServiceParentComponent<T extends Record<string, any>> implemen
 
     const config = entityConfig[this.baseUrl];
     if (config) {
-      this.openDialog(id, config.component, "400px");
+      this.openDialog(id, config.component);
     }
   }
 
-  private openDialog(id: number, component: any, width: string): void {
+  private openDialog(id: number, component: any): void {
     const entityData = id ? this.entities.find(e => e['id'] === id) : {};
 
     const dialogRef = this.dialog.open(component, {
-      width: width,
       data: entityData
     });
 

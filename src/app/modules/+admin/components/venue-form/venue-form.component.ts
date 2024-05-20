@@ -41,8 +41,6 @@ export class VenueFormComponent implements OnInit {
     if (this.form.valid) {
       const venueData = this.form.value;
       if (this.data && this.data.id) {
-
-      } else {
         this.venueService.add(venueData);
       }
     }
