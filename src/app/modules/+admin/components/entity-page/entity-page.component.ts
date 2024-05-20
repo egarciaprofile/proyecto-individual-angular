@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { TableServiceParentComponent } from '../../../../shared/components/table-service-parent/table-service-parent.component';
 import { NgIf } from '@angular/common';
@@ -16,7 +16,7 @@ export class EntityPageComponent implements OnInit, OnDestroy {
   entity: string = '';
   private subscription: Subscription = new Subscription();
   private refresh: boolean = false;
-  constructor(private route: ActivatedRoute, private router: Router) {}
+  constructor(private route: ActivatedRoute) {}
 
   ngOnInit(): void {
     this.addSubscriptionRoute();
