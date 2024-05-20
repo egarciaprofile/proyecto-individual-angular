@@ -36,10 +36,7 @@ export class TableServiceParentComponent<T extends Record<string, any>> implemen
           this.displayedColumns = Object.keys(data[0]);
           this.displayedColumns.push('actions');
         }
-        console.log("Received data:", data);
-        console.log("Columns:", this.displayedColumns);
-      },
-      error: (err) => console.error(`Failed to load data from ${this.genericService}`, err)
+      }
     });
   }
 
@@ -47,8 +44,7 @@ export class TableServiceParentComponent<T extends Record<string, any>> implemen
     this.genericService.delete(id).subscribe({
       next: () => {
         this.loadEntities()
-      },
-      error: (err) => console.error('Failed to delete entity', err)
+      }
     });
   }
 

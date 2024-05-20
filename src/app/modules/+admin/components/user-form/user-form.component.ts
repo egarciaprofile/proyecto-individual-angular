@@ -45,14 +45,7 @@ export class UserFormComponent implements OnInit {
       };
 
       if (!this.data.id) {
-        this.userService.add(formData).subscribe({
-          next: (response) => {
-            console.log('User added successfully', response);
-          },
-          error: (error) => {
-            console.error('Failed to add user', error);
-          }
-        });
+        this.userService.add(formData).subscribe();
       } else {
 
       }

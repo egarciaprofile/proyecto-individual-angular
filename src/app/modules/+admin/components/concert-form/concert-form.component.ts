@@ -58,10 +58,8 @@ export class ConcertFormComponent {
       if (!this.data.id) {
         this.concertService.add(formData).subscribe({
           next: (response) => {
-            console.log('Concert added successfully', response);
           },
           error: (error) => {
-            console.error('Failed to add user', error);
           }
         });
       }

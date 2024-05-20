@@ -43,10 +43,7 @@ export class VenueFormComponent implements OnInit {
       if (this.data && this.data.id) {
 
       } else {
-        this.venueService.add(venueData).subscribe({
-          next: response => console.log('Venue created', response),
-          error: error => console.error('Error creating venue', error)
-        });
+        this.venueService.add(venueData);
       }
     }
   }

@@ -50,7 +50,6 @@ export class RegisterFormComponent {
           this.snackBar.open('User successfully registered!', 'Close', { duration: 3000 });
         },
         error: (error: HttpErrorResponse) => {
-          console.error('Registration failed:', error);
           switch (error.status) {
             case 409:
               this.snackBar.open(`This mail is already registered!`, 'Close', { duration: 3000 });
