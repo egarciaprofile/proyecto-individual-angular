@@ -24,6 +24,10 @@ export class VenueFormComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.formInit();
+  }
+
+  formInit(): void {
     this.form = this.fb.group({
       name: [this.data && this.data.id ? this.data.name : '', Validators.required],
       city: [this.data && this.data.id ? this.data.city : '', Validators.required],

@@ -34,13 +34,17 @@ export class ConcertFormComponent {
   ) {}
 
   ngOnInit(): void {
+    this.formInit();
+
+    this.events$ = this.eventService.getAll();
+    this.performers$ = this.performerService.getAll();
+  }
+
+  formInit(): void {
     this.form = this.fb.group({
       event: [this.data && this.data.event ? this.data.event.id : ''],
       performer: [this.data && this.data.performer ? this.data.performer.id : '']
     });
-
-    this.events$ = this.eventService.getAll();
-    this.performers$ = this.performerService.getAll();
   }
 
   onSubmit(): void {

@@ -21,6 +21,10 @@ export class UserFormComponent implements OnInit {
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, private userService: UserService, private fb: FormBuilder) { }
 
   ngOnInit(): void {
+    this.formInit();
+  }
+
+  formInit(): void {
     this.form = this.fb.group({
       name: [this.data && this.data.id ? this.data.name : '', Validators.required],
       surname: [this.data && this.data.id ? this.data.surname : '', Validators.required],
