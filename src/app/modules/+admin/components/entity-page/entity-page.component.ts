@@ -1,5 +1,5 @@
-import { Component, OnDestroy } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { TableServiceParentComponent } from '../../../../shared/components/table-service-parent/table-service-parent.component';
 import { NgIf } from '@angular/common';
@@ -12,11 +12,11 @@ import { ConcertFormComponent } from "../concert-form/concert-form.component";
     styleUrl: './entity-page.component.css',
     imports: [TableServiceParentComponent, NgIf, ConcertFormComponent]
 })
-export class EntityPageComponent implements OnDestroy {
+export class EntityPageComponent implements OnInit, OnDestroy {
   entity: string = '';
   private subscription: Subscription = new Subscription();
-
-  constructor(private route: ActivatedRoute) {}
+  private refresh: boolean = false;
+  constructor(private route: ActivatedRoute, private router: Router) {}
 
   ngOnInit(): void {
     this.addSubscriptionRoute();
@@ -25,9 +25,20 @@ export class EntityPageComponent implements OnDestroy {
   addSubscriptionRoute(): void {
     this.subscription.add(
       this.route.paramMap.subscribe(params => {
-        this.entity = params.get('entity') || '';
+        const newEntity = params.get('entity') || '';
+        if (this.entity !== newEntity) {
+          this.entity = newEntity;
+          if (this.refresh) {
+            window.location.reload()
+          }
+          this.refresh = true;
+        }
       })
     );
+  }
+
+  refreshPage(): void {
+    window.location.reload();
   }
 
   ngOnDestroy(): void {
