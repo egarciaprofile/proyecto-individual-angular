@@ -4,7 +4,13 @@
   <mat-icon class="ticket-icon" aria-hidden="false" aria-label="Example user verified icon">local_activity</mat-icon>
 
   <span class="spacer"></span>
-  <button mat-button routerLink="/home">Home</button>
-  <button mat-button routerLink="/login">Log-in</button>
+  <mat-menu #adminMenu="matMenu">
+    <button mat-menu-item routerLink="/admin/view/venue">Venue</button>
+    <button mat-menu-item routerLink="/admin/view/user">Users</button>
+    <button mat-menu-item routerLink="/admin/view/concert">Concert</button>
+    <button mat-menu-item routerLink="/admin/view/event">Event</button>
+    <button mat-menu-item routerLink="/admin/view/performer">Event</button>
+  </mat-menu>
+  <button mat-button [matMenuTriggerFor]="adminMenu">Admin</button>
   <button mat-button routerLink="/register">Register</button>
 </mat-toolbar>
